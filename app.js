@@ -15,7 +15,7 @@ const app = express();
 dotenv.config();
 
 const dbLink = `mongodb+srv://${process.env.db_user}:${process.env.password}@bookres.uiel5v2.mongodb.net/?retryWrites=true&w=majority&appName=BookRes`
-const {SERVER_PORT}=process.env;
+const {PORT}=process.env;
 
 mongoose.connect(dbLink)
 .then(function(){
@@ -40,6 +40,6 @@ app.use("/api/premium/",videoRouter);
 app.use("/api/payment",paymentRouter);
 
 
-app.listen(SERVER_PORT,function(){
-    console.log("Server Started At PORT NO: ",SERVER_PORT);
+app.listen(PORT,function(){
+    console.log("Server Started At PORT NO: ",PORT);
 });
