@@ -27,7 +27,7 @@ googleRouter.get( '/callback',passport.authenticate( 'google',{session:false}),
             res.cookie("jwt",jwtToken,{
                 httpOnly:true,
                 sameSite:"none",
-                secure: false,    
+                secure: true,    
                 maxAge: 24 * 60 * 60 * 1000,
             });
 
