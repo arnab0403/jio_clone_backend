@@ -19,10 +19,14 @@ const user ={
     },
     password: { 
         type: String,
-        required: true 
     },
-    imageUrl:{
+    avatar:{
         type:String
+    },
+    provider:{
+        type:String,
+        default:"jio",
+        enum:["google","jio"],
     },
     isPremium:{
         type:Boolean,

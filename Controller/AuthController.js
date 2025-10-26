@@ -68,11 +68,13 @@ const signUp = async (req, res) =>{
 }
 
 // login 
-const login =async (req,res)=>{
+const login = async (req,res)=>{
     try {
         const body = req.body;
         const {email,password} = body;
         console.log(email, password)
+
+
         if (!email || !password) {
            return res.status(401).json({
                 message:"all fileds are required",
@@ -81,30 +83,44 @@ const login =async (req,res)=>{
         }
 
         const userRes =await UserModel.findOne({email});
-        if (!userRes) {
-            console.log("notfound");
+
+
+        // edge case when user signed up with google auth
+        if (userRes?.provider === "google") {
             return res.status(404).json({
-                message:"email or password wrong",
+                message:"Please Use Google Sign in",
                 status:"failed"
             })
         }
+
+        // when user not found
+        if (!userRes) {
+            console.log("notfound");
+            return res.status(404).json({
+                message:"Email ID or Password is wrong",
+                status:"failed"
+            })
+        }
+
         const userPassword = userRes.password;
 
         const isVerified = await bcrypt.compare(password, userPassword);
 
+        // when password not matched 
         if (!isVerified) {
             return res.status(401).json({
-                message:"email id or password is wrong",
+                message:"Email ID or Password is Wrong",
                 status:"failed"
             })
         }
+
         const token = await jswtSign({"id":userRes["_id"]},process.env.SECRECT_KEY);
 
         res.cookie("jwt", token, {
-            maxAge: 1000 * 60 * 60 *24,
-            httpOnly:true, // it can only be accessed by the server
-            secure: true, // 👈 cookie only sent over HTTPS
-            sameSite: "none" // 👈 required for cross-site cookies
+        maxAge: 1000 * 60 * 60 *24,
+        httpOnly:true, // it can only be accessed by the server
+        secure: true, // 👈 cookie only sent over HTTPS
+        sameSite: "none" // 👈 required for cross-site cookies
         });
 
         res.status(200).json({
@@ -112,7 +128,6 @@ const login =async (req,res)=>{
             status:"success",
             user:userRes
         });
-
     } catch (error) {
         console.log(error);
         res.status(500).json({

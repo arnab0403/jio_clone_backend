@@ -6,12 +6,13 @@ async function getUser(req,res) {
     try {
         const userId = req.userId;
 
-        const {name,email,wishList,isPremium} = await UserModel.findById(userId);
+        const {name,email,wishList,isPremium,avatar} = await UserModel.findById(userId);
 
         res.status(200).json({
             user:{
                 name:name,
                 email:email,
+                avatar:avatar,
                 wishList:wishList,
                 isPremium:isPremium
             },
@@ -44,11 +45,11 @@ async function addToWishList(req,res){
         if(user.wishList.find(item => item.id===id)){
             return res.status(400).json({
                 status:"failed",
-                message:"Item already exist"
+                message:"Already Exist in Your Watchlist"
             })
         }
 
-        let postItem;
+        let postItem;   
 
         if (media_type === "tv" ){
             postItem = (await getMediaList.get(TMDB_ENDPOINT.fetchTvShowDetails(id)));   
