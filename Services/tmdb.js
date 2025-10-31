@@ -26,6 +26,7 @@ const TMDB_ENDPOINT = {
     fetchAnimeMovies: '/discover/movie?language=en-US&with_genres=16',
     fetchMovieVideos: (id) => `/movie/${id}/videos`,
     fetchMovieDetails: (id) => `/movie/${id}`,
+    fetchMovieByName:(name)=>`/search/movie?query=${name}&include_adult=false&language=en-US&page=1`,
 
     // Tv Shows
     fetchActionTvShows: `/discover/tv?language=en-US&with_genres=10759`,

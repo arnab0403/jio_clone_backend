@@ -72,8 +72,30 @@ async function getMovieDetails(req,res) {
     
 }
 
+async function getMovieDetailsByName(req,res) {
+    try {
+        const {movieName} = req.query;
+        console.log(movieName);
+        console.log(TMDB_ENDPOINT.fetchMovieByName(movieName));
+        const response = await getMediaList.get(TMDB_ENDPOINT.fetchMovieByName(movieName));
+        const media = response.results.filter((vid)=>vid.poster_path);
+        res.status(200).json({
+            message:"Movies Details",
+            status:"success",
+            media:media
+        }) 
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            message:"Internal Server Error",
+            status:"failed",
+            media:error
+        }) 
+    }
+}
 
 
 
 
-module.exports={getActionMovies, getAnimeMovies, getComedyMovies, getHorrorMovies, getRomanceMovies, getMovieDetails}
+
+module.exports={getActionMovies, getAnimeMovies, getComedyMovies, getHorrorMovies, getRomanceMovies, getMovieDetails, getMovieDetailsByName}
