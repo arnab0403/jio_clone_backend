@@ -24,7 +24,6 @@ mongoose.connect(dbLink)
 });
 
 app.use(cors({
-  origin: "https://project-jio-clone-frontend.vercel.app", // frontend URL
   credentials: true                // 👈 allow cookies
 }));
 
