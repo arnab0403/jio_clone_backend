@@ -57,7 +57,6 @@ async function addToWishList(req,res){
             postItem = (await getMediaList.get(TMDB_ENDPOINT.fetchMovieDetails(id)));
         }
 
-        console.log(postItem);
         const wishListItem = {
             poster_path:postItem.poster_path,
             name:postItem.name || postItem.title,

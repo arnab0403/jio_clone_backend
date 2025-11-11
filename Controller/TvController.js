@@ -3,7 +3,6 @@ const { getMediaList, TMDB_ENDPOINT } = require("../Services/tmdb")
 async function getActionTvShows(req,res){
     try {
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchActionTvShows);
-        console.log(response)
         
         response.results.forEach(item => {
             item.media_type = "tv";
@@ -26,9 +25,7 @@ async function getActionTvShows(req,res){
 
 async function getComedyTvShows(req,res){
     try {
-        console.log("debug");
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchComedyTvShows);
-        console.log(response)
         
         response.results.forEach(item => {
             item.media_type = "tv";
@@ -49,9 +46,7 @@ async function getComedyTvShows(req,res){
 
 async function getCrimeTvShows(req,res){
     try {
-        console.log("debug");
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchCrimeTvShows);
-        console.log(response)
         
         response.results.forEach(item => {
             item.media_type = "tv";
@@ -73,9 +68,7 @@ async function getCrimeTvShows(req,res){
 
 async function getDramaTvShows(req,res){
     try {
-        console.log("debug");
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchDramaTvShows);
-        console.log(response)
         
         response.results.forEach(item => {
             item.media_type = "tv";
@@ -96,10 +89,8 @@ async function getDramaTvShows(req,res){
 
 async function getMysteryTvShows(req,res){
     try {
-        console.log("debug");
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchMysteryTvShows);
-        console.log(response)
-        
+       
         response.results.forEach(item => {
             item.media_type = "tv";
         });
@@ -121,9 +112,7 @@ async function getMysteryTvShows(req,res){
 async function getTvShowsDetails(req,res){
     try {
         const {id}=req.query;
-        console.log("debug");
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchTvShowVideos(id));
-        console.log(response)
         
         response.results.forEach(item => {
             item.media_type = "tv";

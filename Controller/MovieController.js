@@ -75,8 +75,6 @@ async function getMovieDetails(req,res) {
 async function getMovieDetailsByName(req,res) {
     try {
         const {movieName} = req.query;
-        console.log(movieName);
-        console.log(TMDB_ENDPOINT.fetchMovieByName(movieName));
         const response = await getMediaList.get(TMDB_ENDPOINT.fetchMovieByName(movieName));
         const media = response.results.filter((vid)=>vid.poster_path);
         res.status(200).json({
