@@ -8,7 +8,7 @@ const UserModel = require("../Model/UserModel");
 passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/auth/google/callback",
+    callbackURL: "https://jio-clone-backend-2.onrender.com/api/auth/google/callback",
   },
   async function(request, accessToken, refreshToken, profile, done) {
     try {
