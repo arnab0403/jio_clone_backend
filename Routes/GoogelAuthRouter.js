@@ -29,7 +29,6 @@ googleRouter.get( '/callback',passport.authenticate( 'google',{session:false}),
                 httpOnly:true,
                 secure: true,    
                 sameSite:"none",
-                domain:"project-jio-clone-frontend.vercel.app"
             });
 
             // redirecting to desiganted page
