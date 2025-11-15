@@ -28,7 +28,7 @@ googleRouter.get( '/callback',passport.authenticate( 'google',{session:false}),
                 maxAge: 24 * 60 * 60 * 1000,
                 httpOnly:true,
                 secure: true,    
-                sameSite:"none",
+                sameSite:"lax",
             });
 
             // redirecting to desiganted page
