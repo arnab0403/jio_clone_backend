@@ -33,6 +33,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 // routes
+app.use("/test",(req,res)=>{
+    res.send("Running successfully");
+})
 app.use("/api/auth/",authRouter);
 app.use("/api/user/",userRouter);
 app.use("/api/discover/",discoverRouter);
