@@ -24,7 +24,7 @@ mongoose.connect(dbLink)
 });
 
 app.use(cors({
-  origin:["http://localhost:3000","https://project-jio-clone-frontend.vercel.app"],
+  origin:["http://localhost:3000","https://project-jio-clone-frontend.vercel.app","https://console.cron-job.org"],
   // origin: "https://project-jio-clone-frontend.vercel.app", // frontend URL
   credentials: true                // 👈 allow cookies
 }));
